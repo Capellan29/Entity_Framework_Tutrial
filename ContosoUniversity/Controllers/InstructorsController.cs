@@ -27,9 +27,9 @@ namespace ContosoUniversity.Controllers
 
             if (id != null)
             {
-                ViewBag.InstructorID = id.Value;
+                ViewBag.PersonID = id.Value;
                 viewModel.Courses = viewModel.Instructors.Where(
-                    i => i.InstructorID == id.Value).Single().Courses;
+                    i => i.PersonID == id.Value).Single().Courses;
             }
 
             if (courseID != null)
@@ -97,7 +97,7 @@ namespace ContosoUniversity.Controllers
             Instructor instructor = db.Instructors
                 .Include(i => i.OfficeAssignment)
                 .Include(i => i.Courses)
-                .Where(i => i.InstructorID == id)
+                .Where(i => i.PersonID == id)
                 .Single();
             PopulateAssignedCourseData(instructor);
             return View(instructor);
@@ -127,7 +127,7 @@ namespace ContosoUniversity.Controllers
             var instructorToUpdate = db.Instructors
                 .Include(i => i.OfficeAssignment)
                 .Include(i => i.Courses)
-                .Where(i => i.InstructorID == id)
+                .Where(i => i.PersonID == id)
                 .Single();
             if (TryUpdateModel(instructorToUpdate, "",
                new string[] { "LastName", "FirstMidName", "HireDate", "OfficeAssignment" }))
@@ -216,7 +216,7 @@ namespace ContosoUniversity.Controllers
         {
             Instructor instructor = db.Instructors
               .Include(i => i.OfficeAssignment)
-              .Where(i => i.InstructorID == id)
+              .Where(i => i.PersonID == id)
               .Single();
 
             instructor.OfficeAssignment = null;

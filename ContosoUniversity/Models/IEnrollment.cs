@@ -7,6 +7,6 @@
         int EnrollmentID { get; set; }
         Grade? Grade { get; set; }
         Student Student { get; set; }
-        int StudentID { get; set; }
+        int PersonID { get; set; }
     }
 }
